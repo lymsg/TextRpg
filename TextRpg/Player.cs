@@ -14,7 +14,7 @@ namespace TextRpg
         public Job job;
         public int power = 10;
         public int shield = 5;
-        public int hp = 100;
+        public float hp = 100f;
         public int gold = 15000;
 
         public Player(string name)

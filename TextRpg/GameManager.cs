@@ -15,8 +15,10 @@ namespace TextRpg
         Shop shop = new Shop();
         List<Item> items = new List<Item>();
         List<Shop> shopItems = new List<Shop>();
+        List<Dungeon> dungeons = new List<Dungeon>();
         bool isEquipOpen = false;
         bool isShopOpen = false;
+        bool isDungeonOpen = false;
 
         public void Start()
         {
@@ -537,9 +539,17 @@ namespace TextRpg
         }                                                               
         void Dungeon()                                                              //던전창
         {
+            if (!isDungeonOpen)
+            {
+                dungeons.Add(new Dungeon{ name = "쉬운던전", reqSheild = 5, rewGold = 1000 ,level=Level.easy });
+                dungeons.Add(new Dungeon { name = "일반던전", reqSheild = 11, rewGold = 1700, level = Level.normal });
+                dungeons.Add(new Dungeon { name = "어려운 던전", reqSheild = 17, rewGold = 2500, level = Level.hard });
+                isDungeonOpen = true;
+            }
             bool isRunning = true;
             while (isRunning)
             {
+                Random rand = new Random();
                 Console.Clear();
                 Console.WriteLine("던전입장\n이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n");
                 Console.WriteLine("1. 쉬운 던전     | 방어력 5 이상 권장");
@@ -550,29 +560,50 @@ namespace TextRpg
                 string? input = Console.ReadLine();
                 if (int.TryParse(input, out int select))
                 {
-                    switch (select)
+                    if (select == 0)
                     {
-                        case 0:
-                            isRunning = false;
-                            Village();
-                            break;
-                        case 1:
-
-                            break;
-                        case 2:
-
-                            break;
-                        case 3:
-
-                            break;
-
+                        isRunning = false;
+                        Village();
                     }
+                    else if (select <= dungeons.Count)
+                    {
+                        if (_player.shield < dungeons[select - 1].reqSheild)                               //방어력이 권장방어력보다 낮을때 성공실패
+                        {
+                            int success = rand.Next(1, 11);
+                            if (success <= 4)
+                            {
+                                _player.hp *= 0.5f;
+                            }
+                            else
+                            {
+                                DungeonSuccess(select);
+                            }
+                        }
+                        else
+                        {
+                            DungeonSuccess(select);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다");
+                        Thread.Sleep(1000);
+                    }
+
                 }
-                }
+            }   
 
         }
 
+        void DungeonSuccess(int select)
+        {
+            Random rand = new Random();
+            int hpDown = rand.Next(20, 36) - (_player.shield - dungeons[select - 1].reqSheild );
+            _player.hp -= hpDown;
+            int bonusGold = rand.Next(_player.power, (_player.power * 2) + 1);
+            _player.gold += (dungeons[select - 1].rewGold * bonusGold );
 
+        }
         void Rest()                                                             //휴식창
         {
             bool isRunning = true;
