@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextRpg", "TextRpg\TextRpg.csproj", "{7B2BC73A-E98E-45F6-AC45-6CC59C80A120}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{A2727C2B-531F-4D07-85C6-428304D0D766}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{7B2BC73A-E98E-45F6-AC45-6CC59C80A120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B2BC73A-E98E-45F6-AC45-6CC59C80A120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B2BC73A-E98E-45F6-AC45-6CC59C80A120}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2727C2B-531F-4D07-85C6-428304D0D766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2727C2B-531F-4D07-85C6-428304D0D766}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2727C2B-531F-4D07-85C6-428304D0D766}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2727C2B-531F-4D07-85C6-428304D0D766}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
